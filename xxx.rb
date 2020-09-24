@@ -1,13 +1,14 @@
 require 'selenium-webdriver'
-require 'webdrivers'
-driver = Selenium::WebDriver.for :firefox
-begin
-    driver.manage.window.maximize
-    driver.get "http://google.com"
-    driver.find_element(name: "q")
-    driver.find_element(:name, 'q').send_keys('iTMS coaching')
-    driver.find_element(:name, 'q').send_keys(:enter)
-    sleep 5
-    driver.quit
-end
+
+driver = Selenium::WebDriver.for:chrome
+driver.get 'http://google.com'
+#set size for window
+driver.manage.window.maximize
+#send_key
+search = driver.find_element(:xpath, "//input[@name='q']")
+search.send_keys "iTMS Coaching"
+#get page title
+puts "Page Title is #{driver.title}"
+sleep 2
+driver.quit
 
